@@ -1,0 +1,217 @@
+/* Global styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    height: auto; /* Remove flex-based layout temporarily */
+}
+
+header {
+    background: linear-gradient(135deg, #ffe6f0, #fce3ff);
+    color: #8b4e7d;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+header p {
+    font-size: 1.2em;
+}
+
+#center-box {
+    background: linear-gradient(135deg, #ffe6f0, #fce3ff);
+    color: #8b4e7d;
+    padding: 20px;
+    text-align: center;
+    margin: 20px auto; /* Centers the box and gives margin from other content */
+    max-width: 800px; /* Controls the max width */
+    width: 90%; /* Makes the box responsive */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for visual effect */
+}
+
+#center-box h2 {
+    margin-bottom: 15px;
+    font-size: 1.8em;
+}
+
+#center-box p {
+    font-size: 1.2em;
+}
+
+/* Timeline section */
+#timeline {
+    max-width: 1100px;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Flip container: Controls the perspective of the flip effect */
+.flip-container {
+    perspective: 1000px;
+    width: 300px; /* Adjusted for a good size */
+    height: 400px;
+    margin: 15px;
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+/* Flipper holds both the front and back sides */
+.flipper {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+}
+
+/* Front and Back sides of the card */
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hide the back when flipped */
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.2em; /* Set a default font size */
+    text-align: center; /* Ensure the text is centered */
+    padding: 30px; /* Added padding for spacing */
+    box-sizing: border-box;
+}
+
+/* Front side styles */
+.front {
+    border: 3px solid transparent; 
+    border-radius: 10px;
+    transition: border-color 0.3s ease; /* Optional: for smooth border change */
+    background: linear-gradient(135deg, #ffe6f0, #fce3ff);
+    color: #8b4e7d;
+    font-size: 1.1em;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Initial soft shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect to make it pop */
+.front:hover {
+    animation: dash 1s linear infinite; /* Apply the dash animation */
+    border: 3px dashed #95e0f5; 
+    transform: translateY(-10px); /* Moves the box upwards */
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2); /* Larger shadow for pop-out effect */
+}
+
+/* Back side styles */
+.back {
+    background-color: #ffb3b3;
+    transform: rotateY(180deg); /* Rotate it 180 degrees to hide it initially */
+}
+
+.back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a slight shadow to make the image pop */
+}
+
+/* Margin between text elements */
+.front h2,
+.front p,
+.back h2,
+.back p {
+    margin: 12px 0; /* Added margin to space out text elements */
+}
+
+/* Toggle flip on click */
+.flipper.flip {
+    transform: rotateY(180deg); /* Flip when the class is added */
+}
+
+
+/* Animated border edit */
+.dashed-border {
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  border: 3px dashed #95e0f5;
+  border-radius: 10px;
+  background-clip: padding-box;
+  transition: all 0.3s ease;
+}
+
+/* Hover triggers the animation */
+.dashed-border:hover {
+  animation: dash 1s linear infinite;
+}
+
+
+
+ @keyframes dash {
+  0% {
+    border-image: repeating-linear-gradient(
+      to right,
+      #95e0f5 0%,
+      #95e0f5 10%,
+      transparent 10%,
+      transparent 20%
+    ) 1;
+  }
+  100% {
+    border-image: repeating-linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 10%,
+      #95e0f5 10%,
+      #95e0f5 20%
+    ) 1;
+  }
+}
+
+
+/* Footer */
+footer {
+    margin-top: 80px; /* space above the footer */
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #ffe6f0, #fce3ff); /* soft pink gradient */
+    color: #8b4e7d; /* a romantic purple-pink tone */
+    text-align: center;
+    font-family: 'Segoe UI', 'cursive', sans-serif;
+    font-size: 1.2em;
+}
+
+/* Media Query for smaller screens (Mobile) */
+@media screen and (max-width: 768px) {
+    .flip-container {
+        width: 250px;
+        height: 350px;
+    }
+
+    .front, .back {
+        font-size: 1em; /* Slightly smaller font size for mobile */
+        padding: 20px; /* Adjust padding for mobile screens */
+    }
+
+    header h1 {
+        font-size: 2em; /* Adjust header size for smaller screens */
+    }
+
+    header p {
+        font-size: 1em; /* Adjust paragraph size for smaller screens */
+    }
+
+    /* Adjust margin between text elements for smaller screens */
+    .front h2, .front p, .back h2, .back p {
+        margin: 8px 0; /* Smaller margin for mobile */
+    }
+}
